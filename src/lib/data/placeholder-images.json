@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "gamer-room-bg",
+      "description": "A 3D render of a modern gamer room with neon lights and a streaming desk.",
+      "imageUrl": "https://picsum.photos/seed/gamerbg/1200/1800",
+      "imageHint": "gamer room"
+    },
+    {
+      "id": "dev-room-bg",
+      "description": "A render of a modern, minimalist developer workspace with a MacBook.",
+      "imageUrl": "https://picsum.photos/seed/devbg/1200/1800",
+      "imageHint": "developer workspace"
+    },
+    {
+      "id": "dev-project-1",
+      "description": "Screenshot of a web application project.",
+      "imageUrl": "https://picsum.photos/seed/proj1/600/400",
+      "imageHint": "web app"
+    },
+    {
+      "id": "dev-project-2",
+      "description": "Screenshot of a web application project.",
+      "imageUrl": "https://picsum.photos/seed/proj2/600/400",
+      "imageHint": "code editor"
+    },
+    {
+      "id": "dev-project-3",
+      "description": "Screenshot of a web application project.",
+      "imageUrl": "https://picsum.photos/seed/proj3/600/400",
+      "imageHint": "landing page"
+    },
+    {
+      "id": "social-instagram",
+      "description": "Screenshot of an Instagram profile page.",
+      "imageUrl": "https://picsum.photos/seed/insta1/600/400",
+      "imageHint": "social media"
+    },
+    {
+      "id": "social-tiktok",
+      "description": "Screenshot of a TikTok profile page.",
+      "imageUrl": "https://picsum.photos/seed/tiktok1/600/400",
+      "imageHint": "video creator"
+    },
+    {
+      "id": "social-youtube",
+      "description": "Screenshot of a YouTube channel page.",
+      "imageUrl": "https://picsum.photos/seed/yt1/600/400",
+      "imageHint": "gaming channel"
+    }
+  ]
+}
