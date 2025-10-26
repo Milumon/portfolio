@@ -25,12 +25,12 @@ jobs:
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Pull previous image for cache
-        run: docker pull us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:latest || true
+        run: docker pull us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:latest || true
 
       - name: Build Docker image
         run: |
           docker build \
-            --cache-from us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:latest \
+            --cache-from us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:latest \
             --build-arg NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }} \
             --build-arg NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }} \
             --build-arg NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }} \
@@ -39,19 +39,19 @@ jobs:
             --build-arg NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }} \
             --build-arg GH_TOKEN=${{ secrets.GH_TOKEN }} \
             --build-arg GH_REPO=${{ secrets.GH_REPO }} \
-            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:latest \
-            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:${{ github.sha }} \
+            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:latest \
+            -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:${{ github.sha }} \
             .
 
       - name: Push Docker images
         run: |
-          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:latest
-          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:${{ github.sha }}
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:latest
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy studio \
-            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/studio:${{ github.sha }} \
+          gcloud run deploy portfolio \
+            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/cloud-run-source-deploy/portfolio:${{ github.sha }} \
             --region us-central1 \
             --platform managed \
             --project ${{ secrets.GCP_PROJECT_ID }} \
@@ -63,12 +63,12 @@ jobs:
             --set-env-vars "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }},NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }},NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }},NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }},NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }},NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }},GH_TOKEN=${{ secrets.GH_TOKEN }},GH_REPO=${{ secrets.GH_REPO }}"
 
       - name: Output deployment URL
-        run: echo "Deployed to https://studio-$(gcloud config get-value project)-uc.a.run.app"
+        run: echo "Deployed to https://portfolio-$(gcloud config get-value project)-uc.a.run.app"
 
       - name: Dump logs on failure
         if: failure()
         run: |
-          gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=studio" \
+          gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=portfolio" \
             --limit 100 \
             --format json \
             --project ${{ secrets.GCP_PROJECT_ID }}
