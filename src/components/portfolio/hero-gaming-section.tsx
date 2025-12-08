@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 import { PlaceHolderImages } from '@/lib/data/placeholder-images';
 import { MotionDiv } from '@/components/common/motion-div';
@@ -145,7 +146,7 @@ export function GamerSide() {
             variant="outline"
             className="border-white/30 text-white bg-transparent backdrop-blur-sm hover:bg-white/10 transition-all duration-300 shadow-[0_0_8px_rgba(255,255,255,0.3),inset_0_0_8px_rgba(255,255,255,0.1)] hover:shadow-[0_0_12px_rgba(255,255,255,0.4),inset_0_0_12px_rgba(255,255,255,0.2)] hover:scale-105 hover:-translate-y-1"
           >
-            Let&apos;s Collaborate!
+            <Link href="https://www.linkedin.com/in/miluska-romero/" target="_blank" rel="noopener noreferrer">Let&apos;s Collaborate!</Link>
           </Button>
         </MotionDiv>
 

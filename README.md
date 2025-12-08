@@ -5,6 +5,8 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-11.9-orange)](https://firebase.google.com/)
 
+> 📚 **[Deployment Guide](./docs/deployment-guide.md)** - Quick setup for Google Cloud deployment
+
 A modern, interactive portfolio website built with Next.js 15, featuring a unique dual-sided design that showcases both gaming content creator and web developer personas. Built with cutting-edge technologies and optimized for performance.
 
 ## ✨ Features
